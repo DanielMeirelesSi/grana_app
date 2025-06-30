@@ -1,3 +1,5 @@
+const API_URL = "https://maisgrana-wqjw.onrender.com";
+
 // CADASTRO DE NOVO USUÁRIO
 document.getElementById("formCadastro")?.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -11,13 +13,13 @@ document.getElementById("formCadastro")?.addEventListener("submit", function (e)
 
   const novoUsuario = { nome, data, endereco, usuario, senha, salario };
 
-  fetch(`http://localhost:3000/usuarios?usuario=${usuario}`)
+  fetch(`${API_URL}/usuarios?usuario=${usuario}`)
     .then(res => res.json())
     .then(dados => {
       if (dados.length > 0) {
         alert("Usuário já existe!");
       } else {
-        return fetch("http://localhost:3000/usuarios", {
+        return fetch(`${API_URL}/usuarios`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(novoUsuario)
@@ -43,7 +45,7 @@ function fazerLogin() {
   const usuario = document.getElementById("usuario").value;
   const senha = document.getElementById("senha").value;
 
-  fetch(`http://localhost:3000/usuarios?usuario=${usuario}&senha=${senha}`)
+  fetch(`${API_URL}/usuarios?usuario=${usuario}&senha=${senha}`)
     .then(res => res.json())
     .then(dados => {
       if (dados.length === 1) {
@@ -71,12 +73,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const adicionar = document.getElementById("adminVisivel");
 
-  if (user.admin === true) {
-    adicionar.style.display = "block";
-  } else {
-    adicionar.style.display = "none";
+  if (adicionar) {
+    if (user?.admin === true) {
+      adicionar.style.display = "block";
+    } else {
+      adicionar.style.display = "none";
+    }
   }
-
 
   if (user) {
     const menu = document.getElementById("userMenu");
@@ -87,18 +90,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     }
 
-    // Esconde o botão "Login" se o usuário estiver logado
     const loginItem = document.querySelector('#userDropdown li a[href="login.html"]');
     if (loginItem) {
       loginItem.parentElement.style.display = "none";
     }
 
-    // Mostrar menus restritos
     document.querySelectorAll(".somente-logado").forEach(el => el.style.display = "block");
   } else {
     document.querySelectorAll(".somente-logado").forEach(el => el.style.display = "none");
   }
-
 });
 
 // FUNÇÃO LOGOUT
@@ -128,7 +128,7 @@ window.addEventListener('click', function (e) {
   }
 });
 
-//Função dropdown do menu//
+// Função dropdown do menu
 function toggleMenu() {
   const menu = document.getElementById("menuDropdown");
   menu.classList.toggle("show");
@@ -139,9 +139,8 @@ document.addEventListener("click", function (event) {
   const dropdown = document.getElementById("menuDropdown");
   const menuIcon = document.querySelector(".fa-bars");
 
-  // Se o clique for fora do menu e do ícone, fecha
-  if (!dropdown.contains(event.target) && !menuIcon.contains(event.target)) {
-    dropdown.classList.remove("show");
+  if (!dropdown?.contains(event.target) && !menuIcon?.contains(event.target)) {
+    dropdown?.classList.remove("show");
   }
 });
 
@@ -151,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("formPrivacidade");
   if (!user || !form) return;
 
-  // Preenche os campos
   document.getElementById("nome").value = user.nome;
   document.getElementById("nascimento").value = user.data;
   document.getElementById("endereco").value = user.endereco;
@@ -163,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
 
     const dadosAtualizados = {
-      id: user.id, // obrigatório para PUT
+      id: user.id,
       nome: document.getElementById("nome").value,
       data: document.getElementById("nascimento").value,
       endereco: document.getElementById("endereco").value,
@@ -172,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
       salario: document.getElementById("salario").value
     };
 
-    fetch(`http://localhost:3000/usuarios/${user.id}`, {
+    fetch(`${API_URL}/usuarios/${user.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
