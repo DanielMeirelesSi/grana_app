@@ -1,15 +1,6 @@
-
-document.getElementById('formCadastro').addEventListener('submit', function (event) {
-    event.preventDefault();
-
-
-    window.location.href = 'homepage.html';
-});
-
 document.getElementById('formCadastro').addEventListener('submit', function(event) {
-  event.preventDefault(); // Impede o recarregamento do formulário
+  event.preventDefault();
 
-  // Pega os valores dos inputs
   const nome = document.getElementById('nome').value;
   const data = document.getElementById('nascimento').value;
   const endereco = document.getElementById('endereco').value;
@@ -17,7 +8,6 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
   const senha = document.getElementById('senha').value;
   const salario = document.getElementById('salario').value;
 
-  // Monta o objeto do novo usuário
   const novoUsuario = {
     nome,
     data,
@@ -27,8 +17,7 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
     salario
   };
 
-  // Envia para o JSON Server
-  fetch('https://maisgrana-wqjw.onrender.com/://localhost:3000/usuarios', {
+  fetch('https://maisgrana-wqjw.onrender.com/usuarios', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -38,7 +27,7 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
   .then(response => {
     if (response.ok) {
       alert('Usuário cadastrado com sucesso!');
-      window.location.href = 'homepage.html'; // redireciona pro login
+      window.location.href = 'homepage.html';
     } else {
       alert('Erro ao cadastrar usuário.');
     }
@@ -48,5 +37,3 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
     alert('Erro de conexão com o servidor.');
   });
 });
-
-
