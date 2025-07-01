@@ -1,4 +1,4 @@
-const API_URL = "https://maisgrana-wqjw.onrender.com";
+const API_URL = "https://maisgrana-wqjw.onrender.com/";
 
 // CADASTRO DE NOVO USUÁRIO
 document.getElementById("formCadastro")?.addEventListener("submit", function (e) {

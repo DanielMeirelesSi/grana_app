@@ -28,7 +28,7 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
   };
 
   // Envia para o JSON Server
-  fetch('http://localhost:3000/usuarios', {
+  fetch('https://maisgrana-wqjw.onrender.com/://localhost:3000/usuarios', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
