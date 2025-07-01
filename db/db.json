@@ -214,16 +214,17 @@
       "salario": "R$3000,00"
     },
     {
-      "id": "3",
+      "id": "2",
       "nome": "Daniel",
       "data": "17/03/2005",
-      "endereco": "Avenida Brasil, 2000, Barra da Tijuca, Rio de Janeiro",
-      "admin": true,
+      "endereco": "Avenida Brasil, 2005, Barra da Tijuca, Rio de Janeiro",
+      "usuario": "Daniel",
+      "admin": false,
       "senha": "1234",
       "salario": "R$3000,00"
     },
     {
-      "id": "2",
+      "id": "3",
       "nome": "Bernardo",
       "data": "0001-01-01",
       "endereco": "Rua 1",
