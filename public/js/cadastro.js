@@ -1,6 +1,7 @@
 document.getElementById('formCadastro').addEventListener('submit', function(event) {
-  event.preventDefault();
+  event.preventDefault(); // Impede o recarregamento do formulário
 
+  // Pega os valores dos inputs
   const nome = document.getElementById('nome').value;
   const data = document.getElementById('nascimento').value;
   const endereco = document.getElementById('endereco').value;
@@ -8,15 +9,18 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
   const senha = document.getElementById('senha').value;
   const salario = document.getElementById('salario').value;
 
+  // Monta o objeto do novo usuário
   const novoUsuario = {
     nome,
     data,
     endereco,
     usuario,
     senha,
-    salario
+    salario,
+    admin: false
   };
 
+  // Envia para o JSON Server hospedado no Render
   fetch('https://maisgrana-wqjw.onrender.com/usuarios', {
     method: 'POST',
     headers: {
@@ -27,7 +31,7 @@ document.getElementById('formCadastro').addEventListener('submit', function(even
   .then(response => {
     if (response.ok) {
       alert('Usuário cadastrado com sucesso!');
-      window.location.href = 'homepage.html';
+      window.location.href = 'homepage.html'; // redireciona pro login
     } else {
       alert('Erro ao cadastrar usuário.');
     }
